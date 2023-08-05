@@ -119,7 +119,5 @@ function processData(data,) {
     console.log(`Group ${maxGroupIndex + 1} has the highest number of elements.`);
     console.log(`Group ${minGroupIndex + 1} has the lowest number of elements.`);
 
-
-
 }
 
