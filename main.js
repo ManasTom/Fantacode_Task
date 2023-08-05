@@ -74,27 +74,50 @@ function processData(data,) {
 
     const groups = groupLocationsByDistance(LatLongData, maxDistance);
 
+    let totalGroups = 0;
+    let maxGroupIndex = -1;
+    let maxGroupSize = 0;
+    let minGroupIndex = -1;
+    let minGroupSize = Number.MAX_SAFE_INTEGER;
+
     // Print the results in the console
     groups.forEach((group, index) => {
         if (group.length > 1) {
+            console.log('');
             console.log(`Group ${index + 1}:`);
-            group.forEach((location, c=0) => {
+            group.forEach((location) => {
                 LatCheckData = data.map((data, index) => { return data.address.geo.latitude });
                 LongCheckData = data.map((data, index) => { return data.address.geo.longitude });
                 NameCheckData = data.map((data, index) => { return data.fullName });
-                console.log(`- latitude: ${location.latitude}, longitude: ${location.longitude}`);
-                c++;
+                //console.log(`- latitude: ${location.latitude}, longitude: ${location.longitude}`);
                 for (k = 0; k < data.length; k++) {
                     if (location.latitude == LatCheckData[k] && location.longitude == LongCheckData[k]) {
                         console.log(NameCheckData[k])
                     }
                 }
-                console.log((index + 1))
-                console.log(`- No.of members in this group =  ${c}`)
             });
+            const groupSize = group.length;
+            console.log(`- No.of members in group${index+1} = ${group.length}`);
+            totalGroups++;
+
+            if (groupSize > maxGroupSize) {
+                maxGroupSize = groupSize;
+                maxGroupIndex = index;
+              }
+          
+              if (groupSize < minGroupSize) {
+                minGroupSize = groupSize;
+                minGroupIndex = index;
+              }
+
         }
 
     });
+    console.log('');
+    console.log(`Total number of groups: ${totalGroups}`);
+    console.log('');
+    console.log(`Group ${maxGroupIndex + 1} has the highest number of elements.`);
+    console.log(`Group ${minGroupIndex + 1} has the lowest number of elements.`);
 
 
 
