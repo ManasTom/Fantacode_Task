@@ -4,6 +4,7 @@ Fantacode internship task:
 
 As per the requirements specified, the JSON file has been accessed and the processes has been done 
 in javascript file [main.js] in this repository.
+    - As there is some issue with the permissions for the JSON file, it has been fetched to the local repository.
 
 
 To see the results, run the index.html file in this repository and follow the instructions there:
